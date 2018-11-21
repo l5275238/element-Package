@@ -17,12 +17,7 @@
                 :row-class-name="tableRowClassName"
                 :max-height="height">
 
-        <!--多选-->
-        <!--序号列-2018-10-15徐莹-->
-        <!--<el-table-column v-if="showSelect"-->
-          <!--type="selection"-->
-          <!--width="55">-->
-        <!--</el-table-column>-->
+
         <el-table-column
           v-if="showSelect"
           align="center"
