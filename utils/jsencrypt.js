@@ -1,0 +1,10 @@
+import Jsencrypt from 'jsencrypt'
+
+var jsencrypt=new Jsencrypt();
+
+var publickey ='MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIyirbChVxQFk3n5ZDyBksvMEmdDIWM+52iGIgItINV0ivasC2MpE1OzFzwgLt2nv14LXJTRmawLf1cduRhVWT13ldhidL601KE23Wabo30TKNJmMR0gLPD2PTq5JjmuwxSEd5AIdGm3OIaRrScQ24PlEbho2+ApTLjzCknGkY1wIDAQAB';
+
+
+jsencrypt.setPublicKey(publickey)
+
+export  default jsencrypt
