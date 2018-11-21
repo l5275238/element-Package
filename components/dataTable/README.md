@@ -1,6 +1,5 @@
 ## element二次封装tabel ##
-
-
+依赖element-ui tabel  lang.js 报错请看清楚引用模块是否有问题
 - **传入参数**
 >
  | 参数      |     参数类型 |   参数说明   |  默认值    |
