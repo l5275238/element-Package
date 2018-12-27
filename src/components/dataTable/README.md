@@ -6,18 +6,30 @@
 >
  | 参数      |     参数类型 |   参数说明   |  默认值    |
 | :-------- | :--------| :------ |:------  |
-| obj|  <mark>Object,必传</mark>| isLoading:Boolean遮罩层开关;list:Array数据源；page{page:1,rows:10,totalCount:总条数}分页参数|    |
-| hasAll   | Boolean 非必传| 是否显示合计|  默认false     |
-| allObj   | Array 源| 合计数据|  默认false     |
-| showSelect   | Boolean 非必传| 选择框打开|  默认false     |
-| checkModelShow   | Boolean 非必传| 表头筛选打开|  默认false     |
-| showNum   | Boolean 非必传| 序号打开支持分页|  默认false     |
-| keyId   | String 非必传| 需要记忆选择内容分页时候每条记录的主键|       |
+| obj|  <mark>Object,必传</mark>| 表格配置项|    |
 | columns   | Array 必传| 表格设置和element-ui columns类似新增加一些字段|       |
+
+| obj  介绍    |     参数类型 |   参数说明   |  默认值    |
+| :-------- | :--------| :------ |:------  |
+| isLoading   | Boolean | 打开遮盖层|       |
+| autoHeight   | Boolean | 自动计算高度|       |
+| name   | String | 记录拖拽表格Key|        |
+| hasAll   | Boolean | 是否开启合计|       |
+| autoAll   | Boolean | 是否自动合计|       |
+| allObj   | Object | 手动传入合计数据|       |
+| showNum   | Boolean | 打开序号|       |
+| showSelect   | Boolean | 开启选择|       |
+| keyId   | Boolean) | 分页记录每条bean的唯一key 主键|       |
+| drag   | Boolean | 开启拖拽 |      |
+| hasPage   | Boolean | 开启分页 |      |
+| checkModelShow   | Boolean | 开启表头筛选 |      |
+| list   | Array 必传|  数据源 |        |
+| page   | Object |{page:1,rows:10,totalCount:100}分页参数 |        |
 
 | columns  介绍    |     参数类型 |   参数说明   |  默认值    |
 | :-------- | :--------| :------ |:------  |
 | prop   | String 必传| 数据的key|       |
+| allProp   | String | 自动合计时数据的key(自动合计时allProp=prop 手动合计时根据返回的key如果与prop相同可以不定义)|       |
 | label   | String 必传| 显示的名字|       |
 | isShow   | Boolean | 是否显示|   true     |
 | filter   | Function(item) | 过滤的方法 返回值为显示的内容|       |
