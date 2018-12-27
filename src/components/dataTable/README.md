@@ -8,9 +8,10 @@
 | :-------- | :--------| :------ |:------  |
 | obj|  <mark>Object,必传</mark>| isLoading:Boolean遮罩层开关;list:Array数据源；page{page:1,rows:10,totalCount:总条数}分页参数|    |
 | hasAll   | Boolean 非必传| 是否显示合计|  默认false     |
-| allcolumns   | Array 非必传| 合计显示内容|       |
 | allObj   | Array 源| 合计数据|  默认false     |
 | showSelect   | Boolean 非必传| 选择框打开|  默认false     |
+| checkModelShow   | Boolean 非必传| 表头筛选打开|  默认false     |
+| showNum   | Boolean 非必传| 序号打开支持分页|  默认false     |
 | keyId   | String 非必传| 需要记忆选择内容分页时候每条记录的主键|       |
 | columns   | Array 必传| 表格设置和element-ui columns类似新增加一些字段|       |
 
