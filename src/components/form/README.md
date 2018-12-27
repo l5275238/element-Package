@@ -3,8 +3,9 @@
 
 ps:校验可以自己定义在validate.js   validate里写入校验规则  messges里是提示内容  需要传参的校验可以 *校验name?key的形式传入 可以参考例子
 
+demo 地址https://l5275238.github.io/element-Package/dist/index.html#/dataForm/dataForm
 
-本地运行 git clone https://github.com/l5275238/- 装好依赖 npm run dev  打开http://localhost:8080/#/dataForm/dataForm
+本地运行 git clone https://github.com/l5275238/element-Package 装好依赖 npm run dev  打开http://localhost:8080/#/dataForm/dataForm
 - **传入参数**
 >
  | 参数      |     参数类型 |   参数说明   |  默认值    |
