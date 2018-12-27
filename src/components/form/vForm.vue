@@ -1,20 +1,4 @@
-<!--
-2018-10-15 王哲
-新增el-input
-    type：输入框类型 可选值：text，textarea 和其他 原生 input 的 type 值  默认值为text
-**********************
-2018-10-15徐莹
-新增formSet：表单样式设置信息{}
-    isFilterBar：是否是筛选栏
-**********************
-该公用组件包含以下自定义参数
-form:表单数据对象即mode,JSON对象{}
-vform: 表单内组件信息，数组形式[]
-      可自定义参数
-      name:即表单label
-      key:即表单prop，为model里传入的参数名
-      render:默认不传为input输入框，如需其它组件需通过此参数自定义，具体可查看ww里的表单用法（该用法是根据这个封装）
---->
+
 <template>
   <div class="vForm">
   <el-form  :model="form" :rules="rules" ref="ruleForm" :inline="true" size="mini"  >
@@ -70,14 +54,12 @@ vform: 表单内组件信息，数组形式[]
             return []
           }
         },
-        formSet:{/* 新加--xuying*/
+        formSet:{
           type:Object,
           default:function(){
             return{
               isFilterBar:false,
-              isSeach:false,
-              isExport:false,
-              isImport:false,
+
               submitShow:true
             }
           }
@@ -213,7 +195,7 @@ vform: 表单内组件信息，数组形式[]
 
 </style>
 <style lang="less">
-  /*.el-form--inline .el-form-item{*/
+  /*.el-dataForm--inline .el-dataForm-item{*/
     /*margin: 0;*/
   /*}*/
   .vForm{
