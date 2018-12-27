@@ -611,7 +611,7 @@
             handleMouseMove(e,row){
                 let index =parseInt(row.column.columnKey)
 
-                if (this.dragState.dragging) {
+                if (this.dragState.dragging&&index!=this.dragState.start) {
                     // 记录起始列
                     this.dragState.now=row.$index
                     if (index - this.dragState.start !== 0) {
