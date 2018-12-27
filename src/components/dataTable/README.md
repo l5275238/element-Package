@@ -2,6 +2,9 @@
 依赖element-ui tabel  lang.js 报错请看清楚引用模块是否有问题
 
 功能： 集成了分页，自动计算高度，自动计算宽度，分页选择记忆功能，自定义表格内容，数据过滤
+
+
+本地运行 git clone https://github.com/l5275238/- 装好依赖 npm run dev  打开http://localhost:8080/#/DataTable/table
 - **传入参数**
 >
  | 参数      |     参数类型 |   参数说明   |  默认值    |
