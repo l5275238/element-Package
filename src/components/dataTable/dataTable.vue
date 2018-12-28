@@ -9,6 +9,7 @@
                 border
                 :show-summary="obj.hasAll||obj.autoAll"
                 :summary-method="getSummaries"
+                @row-dblclick="rowDblclick"
                 ref="dtable"
                 highlight-current-row
                 :height="obj.autoHeight?height:null"
@@ -155,7 +156,14 @@
                 }
             },
 
-
+          rowDblclick:{
+            type:Function,
+            default(){
+              return function () {
+                return ""
+              }
+            }
+          },
 
 
             tooltip: {
@@ -206,23 +214,21 @@
             }
         },
         created(){
-            this.dcolumns=this.tdcolumns
+          this.dcolumns=this.initColumns()
             this.$nextTick(()=>{
 
                 //this.height=this.$refs.dataTable.offsetHeight - (this.hasPage?85:0) oncontextmenu
                 this.height=this.$refs.dataTable.offsetHeight
-                // this.$refs.dataTable.oncontextmenu=()=>{
-                //   alert(1)
-                // }
+
 
             })
-            this.nowList=lang.cloneDeep(this.list);
+          this.nowList=this.initList()
         },
         watch:{
 
-            tdcolumns(n){
+            columns(n){
 
-                this.dcolumns=n
+                this.dcolumns=this.initColumns()
             },
             dcolumns(n){
 
@@ -246,7 +252,7 @@
                 setStorage(key,JSON.stringify(storage),'localStorage')
             },
             list(){
-                this.nowList=lang.cloneDeep(this.list);
+                this.nowList=this.initList()
             }
 
         },
@@ -278,106 +284,11 @@
             // ...mapGetters(['navStyle']),
             tdcolumns(){
 
-                let {autoAll,name}=this.obj
-
-                let list=this.columns.map((item,index)=>{
-                    if(autoAll&&item.allProp){
-                        this.autoAllObj[item.allProp]=0
-                    }
-                    item.$index=index;
-                    return item
-                })
-
-
-                if(!name){
-                    return list
-                }
-
-                try {
-                    let key=this.$route.path+"-"+name;
-                    let storage=getStorage(key,'localStorage')||{}
-
-
-                    let columns =[
-                    ]
-
-                    if(storage){
-
-
-                        for(let value of storage){
-
-                            for(let item of list){
-                                if(value.prop==item.prop){
-                                    item.isShow=value.isShow
-                                    columns.push(item)
-                                }
-                            }
-                        }
-
-                        return columns.map((item,index)=>{
-                            item.$index=index;
-                            return item
-                        })
-                    }
-                    return  list
-
-                }
-                catch (e) {
-                    return list
-                }
-
-
 
             },
             list(){
 
-
-                var arr
-              let {autoAll,showSelect,list,keyId}=this.obj
-
-
-
-                if(showSelect||autoAll) {
-                    arr = lang.cloneDeep(list.map(item => {
-                        if(autoAll){
-                            for(let key in this.autoAllObj){
-
-                                this.autoAllObj[key]=floatObj.add(this.autoAllObj[key],item[key])
-
-                            }
-                        }
-                        if(showSelect){
-                            item.isCheck = item.isCheck ? true : false
-
-                            if(keyId){
-                                let isOk = false
-                                for (let value of this.allList) {
-                                    if (item[keyId] == value[keyId]) {
-                                        item.isCheck=value.isCheck;
-                                        Object.assign(value,item)
-
-                                        isOk = true;
-                                        break
-                                    }
-
-                                }
-
-                                if (!isOk) {
-                                    this.allList.push(item)
-                                }
-                            }
-                        }
-
-
-
-                        return item
-                    }))
-                }
-                else{
-                    arr=lang.cloneDeep(list)
-                }
-
-                return arr
+              return this.obj.list
             },
             checkAll(){
                 if(this.list.length==0){
@@ -392,6 +303,97 @@
             },
         },
         methods: {
+          initList(){
+            var arr
+            let {autoAll,showSelect,list,keyId}=this.obj
+
+            arr = lang.cloneDeep(list.map((item,index) => {
+              if(autoAll){
+                for(let key in this.autoAllObj){
+
+                  this.autoAllObj[key]=floatObj.add(this.autoAllObj[key],item[key])
+
+                }
+              }
+              if(showSelect){
+                item.isCheck = item.isCheck ? true : false
+
+                if(keyId){
+                  let isOk = false
+                  for (let value of this.allList) {
+                    if (item[keyId] == value[keyId]) {
+                      item.isCheck=value.isCheck;
+                      Object.assign(value,item)
+
+                      isOk = true;
+                      break
+                    }
+
+                  }
+
+                  if (!isOk) {
+                    this.allList.push(item)
+                  }
+                }
+              }
+
+              item.$index=index
+
+              return item
+            }))
+
+            return arr
+          },
+          initColumns(){
+            let {autoAll,name}=this.obj
+
+            let list=this.columns.map((item,index)=>{
+              if(autoAll&&item.allProp){
+                this.autoAllObj[item.allProp]=0
+              }
+              item.$index=index;
+              return item
+            })
+
+
+            if(!name){
+              return list
+            }
+
+            try {
+              let key=this.$route.path+"-"+name;
+              let storage=getStorage(key,'localStorage')||{}
+
+
+              let columns =[
+              ]
+
+              if(storage){
+
+
+                for(let value of storage){
+
+                  for(let item of list){
+                    if(value.prop==item.prop){
+                      item.isShow=value.isShow
+                      columns.push(item)
+                    }
+                  }
+                }
+
+                return columns.map((item,index)=>{
+                  item.$index=index;
+                  return item
+                })
+              }
+              return  list
+
+            }
+            catch (e) {
+              return list
+            }
+
+          },
             checkAdd(item){
                 this.dcolumns=lang.cloneDeep(item)
             },
@@ -624,8 +626,7 @@
                 } else {
                     return false
                 }
-                // console.log(e)
-                // console.log(row)
+
 
             },
             renderCheckBox(h,params){

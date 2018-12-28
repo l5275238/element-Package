@@ -45,6 +45,7 @@ demo 地址https://l5275238.github.io/element-Package/dist/#/DataTable/table
 | :-------- | :--------| :------ |
 | refresh   | 表格刷新|  无     |
 | select   | 分页发生变化 |  返回page参考传入的page |       |
+| rowDblclick   | 双击行 |   |       |
 
 | 内部方法   |     传入值 |   作用   |    返回值   |
 | :-------- | :--------| :------ |:------  |
